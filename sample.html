@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>はじめに</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: linear-gradient(135deg, #f5f7f5 0%, #e8f5e9 100%);
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        color: #333;
+        padding: 40px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .title {
+        font-size: 72px;
+        font-weight: bold;
+        color: #2e7d32;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .subtitle {
+        font-size: 36px;
+        color: #388e3c;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .content {
+        font-size: 24px;
+        line-height: 1.5;
+      }
+      .highlight {
+        color: #1b5e20;
+        font-weight: bold;
+      }
+      .footer {
+        text-align: right;
+        font-size: 18px;
+        color: #666;
+      }
+      
+      .care-inheritance-diagram {
+        width: 450px;
+        height: 350px;
+        background: #f8f9fa;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .diagram-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+      }
+      
+      .diagram-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+        position: relative;
+      }
+      
+      .person-section, .family-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .person-circle本人 {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #ffb3ba, #ff8a95);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+      
+      .person-circle家族 {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #c7ceea, #a8b5e8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+      
+      .person-label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+      }
+      
+      .center-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+      
+      .center-box {
+        background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        margin-bottom: 15px;
+        min-width: 120px;
+        position: relative;
+      }
+      
+      .center-title {
+        background: #f0f0f0;
+        border-radius: 20px;
+        padding: 8px 12px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+        border: 2px solid #d0d0d0;
+      }
+      
+      .wall-item {
+        font-size: 12px;
+        color: #333;
+        margin: 2px 0;
+        font-weight: 500;
+      }
+      
+      .specialist-circle {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #ffd93d, #ff9800);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        position: relative;
+      }
+      
+      .specialist-label {
+        position: absolute;
+        top: 55px;
+        font-size: 12px;
+        color: #333;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+      
+      .bottom-bar {
+        background: linear-gradient(135deg, #ff9800, #f57c00);
+        color: white;
+        text-align: center;
+        padding: 10px;
+        border-radius: 0 0 6px 6px;
+        margin: 10px -20px -20px -20px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <div>
+        <h1 class="title">介護と相続セミナー</h1>
+        <h2 class="subtitle">老後の安心と家族の未来のために</h2>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-8 items-center">
+        <div class="care-inheritance-diagram">
+          <div class="diagram-title">■ ・葬儀・相続の壁</div>
+          <div class="diagram-container">
+            <div class="person-section">
+              <div class="person-circle本人">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="person-label">本人</div>
+            </div>
+            
+            <div class="center-section">
+              <div class="center-box">
+                <div class="center-title">相続の発生</div>
+                <div class="wall-item">相続の壁</div>
+                <div class="wall-item">葬儀の壁</div>
+                <div class="wall-item">もめるの壁</div>
+              </div>
+              <div class="specialist-circle">
+                <i class="fas fa-user-tie"></i>
+                <div class="specialist-label">専門家</div>
+              </div>
+            </div>
+            
+            <div class="family-section">
+              <div class="person-circle家族">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="person-label">家族</div>
+            </div>
+          </div>
+          <div class="bottom-bar">
+            本人・家族・専門家の三位一体モデル
+          </div>
+        </div>
+        
+        <div class="content bg-white bg-opacity-70 p-6 rounded-lg shadow-lg">
+          <p class="mb-3"><span class="highlight">セミナーの目的：</span> 介護と相続に関する知識を深める</p>
+          <p class="mb-3"><span class="highlight">前半：</span> 介護保険制度と費用について</p>
+          <p class="mb-3"><span class="highlight">後半：</span> 相続の発生と対策について</p>
+          <p><span class="highlight">ゴール：</span> 個別の状況に合わせた最適な対策</p>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <p>FPプランツ</p>
+      </div>
+    </div>
+  </body>
+</html>
+
